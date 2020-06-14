@@ -1,0 +1,149 @@
+.viewport {
+    background: url(gfx/sky.jpg) no-repeat;
+    background-position-y: -160px;
+    background-size: contain;
+    width: 640px;
+    /* height: 800px; */
+    overflow: hidden;
+    position: relative;
+}
+
+#gameboard {
+    position: relative;
+    margin-top: 160px;
+    background: url(gfx/background.jpg) no-repeat;
+    height: 514px;
+    background-position-y: bottom;
+    background-position-x: center;;
+}
+
+#gameboard::before {
+    display: block;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    background: url(gfx/wave-1.png) repeat-x;;
+    height: 64px;
+    background-position-y:20px;
+    animation: 1s waves linear infinite;
+}
+
+#gameboard::after {
+    display: block;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    background: url(gfx/wave-1.png) repeat-x;;
+    height: 64px;
+    background-position-y:20px;
+    animation: 1s waves linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes waves {
+    0% {
+        background-position-x: 0%;
+        background-position-y: 0;;
+    }
+    50% {
+        background-position-y: 10px;;
+    }
+    100% {
+        background-position-x: 128px;
+        background-position-y: 0;;
+    }
+}
+
+.nemo {
+    background: url(gfx/nemo.png) repeat-y;
+    background-size: 100% auto;
+
+    width: 263px;
+    height: 256px;
+    zoom: 0.25;
+    animation: 0.5s paszcza step-start infinite;
+    z-index:1;
+}
+
+
+@keyframes paszcza {
+    0% {
+        background-position:top;
+    }
+    50% {
+        background-position:bottom;
+    }
+}
+
+.fish-0 {
+    position:absolute;
+    width: 128px;
+    height: 128px;
+    background: url(gfx/fishes.png);
+    zoom: 0.5;
+    background-position-x: -128px;;
+    z-index:2;
+}
+
+.fish-1 {
+    position:absolute;
+    width: 128px;
+    height: 128px;
+    background: url(gfx/fishes.png);
+    zoom: 0.5;
+    background-position-x: -384px;;
+    z-index:2;
+}
+
+
+
+.sprite {
+    position: absolute;
+    left: 0; top: 0;
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: 1s transform;
+    width: 64px;
+    height: 64px;
+}
+
+.point {
+    width: 64px;
+    height: 64px;
+    background: url(gfx/star.png) center center no-repeat;
+    z-index: -1;
+    
+}
+
+body{
+    font-family: 'Lemon', cursive;
+}
+
+#score {
+    
+    position:absolute;
+    top: 0;
+    right: 0;
+    margin:0;
+    padding:20px;
+    font-size: 48px;
+    color: black;
+}
+
+.modal {
+    width: 60%;
+    height: 30%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    z-index: 1000;
+    font-size: 60px;
+    text-align: center;
+    color: white;
+    line-height: 200px;
+}
+
+.hide {display:none}
