@@ -89,6 +89,12 @@ function createMap() {
     return sprites;
 }
 
+function modal(text) {
+    document.querySelector('#modal').innerText = text;
+    document.querySelector('#modal').classList.remove('hide');
+    return false;
+}
+
 function init() {
     console.log('initialize')
     window.addEventListener('keydown', keypress);
@@ -129,6 +135,12 @@ function init() {
                 }
                 // console.log(obj, obj.targetX, obj.targetY);
             }
+            
+            for(let obj of objects) 
+                if(obj !== pacfish) {
+                    if(obj.targetX == pacfish.x && obj.targetY == pacfish.y && pacfish.targetX == obj.x && pacfish.targetY == obj.y)
+                        return modal('You lose!');
+                }
             iteration += 1;
         }
 
@@ -140,11 +152,8 @@ function init() {
             }
 
             for(let obj of objects)
-                if(obj !== pacfish && pacfish.x == obj.x && pacfish.y == obj.y) {
-                    document.querySelector('#modal').innerText = 'You lose!';
-                    document.querySelector('#modal').classList.remove('hide');
-                    return false;
-                }
+                if(obj !== pacfish && pacfish.x == obj.x && pacfish.y == obj.y)
+                    return modal('You lose!');
             let item = map[pacfish.x+'_'+pacfish.y];
             if(item !== undefined) {
                 console.log(item);
@@ -155,7 +164,8 @@ function init() {
                 }
                 delete map[pacfish.x+'_'+pacfish.y]
             }
-
+            if(SCORE == 13*25)
+                return modal('You win!');
             animationStartTimestamp = null;
         } else {
             for(let obj of objects)
